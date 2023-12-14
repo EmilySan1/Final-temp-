@@ -1,0 +1,40 @@
+import java.util.*;
+import java.text.*;
+
+public class Main {
+    public static void main(String[] args) {
+      Player player1 = new Player("Nina", 100);
+      Player player2 = new Player("Larry", 90);
+      Player player3 = new Player("Bob", 80);
+      Player player4 = new Player("Linda", 70);
+      Player player5 = new Player("Vincent", 60);
+      Player player6 = new Player("Rebecca", 50);
+      
+      Scanner scan = new Scanner(System.in);
+      
+System.out.println("Welcome to MEOW, you will go through an adventure to try and survive. Choose your character");
+int totalPlayers = Player.getPlayerCount();
+      System.out.println("There are a total of " + totalPlayers + " players");
+
+       List<Player> allplayers = Arrays.asList(player1, player2, player3, player4, player5, player6);
+              for (Player player : allplayers) {
+                  System.out.println("\n" + player.toString());
+              }
+
+int i = 0;
+  System.out.println("Pick a number for the player");
+    i = scan.nextInt();
+    i--;  
+
+      if(i == 2){
+        System.out.println(allplayers.get(i).getName() + " is an awful player. What is wrong with you.\n");
+  }
+      else{
+        System.out.println(allplayers.get(i).getName() + " is a great player\n");
+
+  }
+Player currentPlayer = allplayers.get(i);
+Player.choice(currentPlayer);
+System.out.println("oh Uh");
+}
+}
