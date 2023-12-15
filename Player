@@ -62,12 +62,12 @@ public class Player
     {
         System.out.println("You have to make a choice. Go into the dark and spooky cave or go over the old wooden bridge.....[1 or 2]");
         Scanner scan = new Scanner(System.in);
-        int choice = scan.nextInt();
-        if (choice == 1)
+        int ans = scan.nextInt();
+        if (ans == 1)
         {
             Player.cave(currentPlayer);
         }
-        else if (choice ==2)
+        else if (ans ==2)
         {
             Player.bridge(currentPlayer);
         }
