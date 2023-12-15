@@ -1,40 +1,67 @@
 import java.util.*;
 import java.text.*;
 
+
 public class Main {
     public static void main(String[] args) {
-      Player player1 = new Player("Nina", 100);
-      Player player2 = new Player("Larry", 90);
-      Player player3 = new Player("Bob", 80);
-      Player player4 = new Player("Linda", 70);
-      Player player5 = new Player("Vincent", 60);
-      Player player6 = new Player("Rebecca", 50);
-      
-      Scanner scan = new Scanner(System.in);
-      
-System.out.println("Welcome to MEOW, you will go through an adventure to try and survive. Choose your character");
-int totalPlayers = Player.getPlayerCount();
-      System.out.println("There are a total of " + totalPlayers + " players");
+        Player player1 = new Player("Nina", 100);
+        Player player2 = new Player("Larry", 90);
+        Player player3 = new Player("Bob", 30);
+        Player player4 = new Player("Linda", 70);
+        Player player5 = new Player("Vincent", 60);
+        Player player6 = new Player("Rebecca", 50);
+//initialize objects
+        Scanner scan = new Scanner(System.in);
 
-       List<Player> allplayers = Arrays.asList(player1, player2, player3, player4, player5, player6);
-              for (Player player : allplayers) {
-                  System.out.println("\n" + player.toString());
-              }
+        welcome();//starts static method
 
-int i = 0;
-  System.out.println("Pick a number for the player");
-    i = scan.nextInt();
-    i--;  
+        int totalPlayers = Player.getPlayerCount();
+        System.out.println("There are a total of " + totalPlayers + " players");//display show many players there are
 
-      if(i == 2){
-        System.out.println(allplayers.get(i).getName() + " is an awful player. What is wrong with you.\n");
-  }
-      else{
-        System.out.println(allplayers.get(i).getName() + " is a great player\n");
+        List<Player> allPlayers = Arrays.asList(player1, player2, player3, player4, player5, player6);
+        for (Player player : allPlayers) {
+            System.out.println("\n" + player.toString());
+        }
+        //creates a list for the players to then be choosen by number
+        int i = 0;
+        System.out.println("Pick a number for the player");
+        i = scan.nextInt();
+        i--;
+        if(i == 2){
+            System.out.println(allPlayers.get(i).getName() + " is an awful player. What is wrong with you.\n");
+        }
+        else{
+            System.out.println(allPlayers.get(i).getName() + " is a great player\n");
 
-  }
-Player currentPlayer = allplayers.get(i);
-Player.choice(currentPlayer);
-System.out.println("oh Uh");
-}
+        }
+        Player currentPlayer = allPlayers.get(i);
+        Player.choice(currentPlayer);//runs the choosen character through choice method in Player class
+
+        System.out.printf("\nStats:\nPlayer: %-10s\nTotal Health: %+,2d\n", currentPlayer.getName(), currentPlayer.getHealth());
+        //displays character stats after first adventure
+        Player.wizard(currentPlayer); //second adventure
+        System.out.println("\nThere are fortunately no more choices to be made, you're free!");
+        rate();//rate method static call
+
+
+    }
+    //static welcome message method
+    public static void welcome() {
+        System.out.println("Welcome player what's your name?");
+        Scanner scan = new Scanner(System.in);
+        String playerName = scan.nextLine();
+        System.out.println("\nWelcome, " + playerName.toUpperCase() + "! to THE CATS MEOW, you will go through an adventure to try and survive. Choose your character");
+    }
+
+    //static rate method
+    public static void rate()
+    {
+        System.out.println("Thank you for playing, please give us a review: ");
+        Scanner scan = new Scanner(System.in);
+        String userSentence = scan.nextLine();
+        System.out.println("\nYou wrote " + userSentence.toLowerCase() + ".");
+        System.out.println("\nYour review has a length of " + userSentence.length() + " characters." + "\nThank you");
+    }
+
+
 }
