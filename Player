@@ -2,204 +2,247 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Player
-  {
+{
     private String name;
     private int health;
-    private static int playerCount = 0; //static variable 
-//constructors
-public Player(String name, int health)
-  {
-  this.name = name;
-  this.health = health; 
-  playerCount++;
-  }
-public Player()
-  {
-    name = "";
-    health = 0;
-  }
-//getters 
+    private static int playerCount = 0; //static variable
+
+
+    //constructors
+    public Player(String name, int health)
+    {
+        this.name = name;
+        this.health = health;
+        playerCount++;
+    }
+    public Player()
+    {
+        name = "";
+        health = 0;
+    }
+    //end constructors
+
+    //getters
     public String getName()
     {
-      return name;
+        return name;
     }
     public int getHealth()
     {
-      return health;
+        return health;
     }
     public static int getPlayerCount()
     {
-      return playerCount;
+        return playerCount;
     }
+    //end getters
 
-//setters
+    //setters
     public void setName(String name)
     {
-      this.name = name;
+        this.name = name;
     }
     public void setHealth(int health)
     {
-      this.health = health;
+        this.health = health;
     }
-//brain method
-    public static void choice(Player currentPlayer)
-    {
-       System.out.println("You have to make a choice. Go into the dark and spooky cave or go over the old wooden bridge.....[1 or 2]");
-      Scanner scan = new Scanner(System.in);
-      if (scan.nextInt() == 1)
-      {
-        Cave(currentPlayer);
-      }
+    //end setters
 
-
-
-
-      if (scan.nextInt() == 1)
-      {
-        Player.Cave(currentPlayer);
-      }
-      else
-      {
-        System.out.println("Uh oh");
-      }
-
-    }
-
-   
-    public static void Cave(Player currentPlayer)
-    {
-      System.out.println("You walk into the cave...you hear a loud snoring sound....ITS A GOBLIN");
-      String ans = validateYes("\nDo you want to fight it? (yes/no)");
-      if (ans.equalsIgnoreCase("yes"))
-      {
-        Random rand = new Random();
-        int randNum = rand.nextInt(3);
-        if (randNum == 0)
-        {
-          System.out.println("You fight the goblin and win");
-          if(currentPlayer.getHealth() > 50)
-          {
-            currentPlayer.setHealth(currentPlayer.getHealth()+5);
-            System.out.println("You gained 5 health");
-            System.out.println("You now have " + currentPlayer.getHealth() + " health");
-          }
-          else 
-          {
-            currentPlayer.setHealth(currentPlayer.getHealth()+ 10);
-            System.out.println("You gained 10 health");
-            System.out.println("You now have " + currentPlayer.getHealth() + " health");
-          }
-      
-        }
-        else if (randNum == 1)
-        {
-          System.out.println("You fight the goblin and lose");
-          if(currentPlayer.getHealth() > 50)
-            {
-             currentPlayer.setHealth(currentPlayer.getHealth() - 20);
-              System.out.println("You lost 20 health");
-              System.out.println(" You now have" + currentPlayer.getHealth() + "health");
-            }
-            else 
-            {
-              currentPlayer.setHealth(currentPlayer.getHealth() - 10);
-              System.out.println("You lost 10 health");
-              System.out.println("You now have" + currentPlayer.getHealth() + "health");
-            }
-    
-      }
-        else 
-        {
-          System.out.println("You fight the goblin and tie");
-        }
-
-    }
-      if(ans.equalsIgnoreCase("no"))
-      {
-        System.out.println("You walk away from the goblin");
-      }
-    }
-
-    /*public static void Bridge()
-    {
-      System.out.println("You walk on the old creaky bridge...and OH it falls out from under you and youre suddenly attacked by a fish");
-      System.out.println("\nDo you want to fight it? (yes/no)");
-      Scanner scan = new Scanner(System.in);
-      if (scan.nextLine().equalsIgnoreCase("yes"))
-      {
-        Random rand = new Random();
-        int randNum = rand.nextInt(5)-1;
-        if (randNum == 0)
-        {
-          System.out.println("You fight the fish and win");
-          health = health + 10;
-          System.out.println("You gained 10 health");
-        }
-        else if (randNum == 1)
-        {
-          System.out.println("You fight the fish and DIE");
-          
-      }
-    }
-
-    }*/
-
-
-    //toString 
+    //toString
     public String toString()
     {
-      return "Player: " + name + "\nHealth: " + health;
+        return "Player: " + name + "\nHealth: " + health;
     }
 
-public static String validateYes(String prompt) // Meant to ensure that the user entered Y or N
+
+    //brain method
+
+    //Choice 1 or 2 method
+    public static void choice(Player currentPlayer)
+    {
+        System.out.println("You have to make a choice. Go into the dark and spooky cave or go over the old wooden bridge.....[1 or 2]");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        if (choice == 1)
         {
+            Player.cave(currentPlayer);
+        }
+        else if (choice ==2)
+        {
+            Player.bridge(currentPlayer);
+        }
 
-          String yesOrNo;
-          Scanner scan = new Scanner(System.in);
+    }
 
-          System.out.println(prompt);
 
-          yesOrNo = scan.nextLine();
+//choice one method
+    public static void cave(Player currentPlayer)
+    {
+        System.out.println("\nYou walk into the cave...you hear a loud snoring sound....ITS A GOBLIN");
+        String ans = validateYes("\nDo you want to fight it? (yes/no)");
+        if (ans.equalsIgnoreCase("yes"))
+        {
+            Random rand = new Random();
+            int randNum = rand.nextInt(5);
+            System.out.println(randNum);//deelete this after
+            if (randNum == 0 || randNum == 1)
+            {
+                System.out.println("\nYou fight the goblin and win");
+                if(currentPlayer.getHealth() > 50 || currentPlayer.getName().equals("Bob"))
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth()+5);
+                    System.out.println("Health +5");
+                }
+                else
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth()+ 10);
+                    System.out.println("Health: +10");
+                }
 
-          while(!(yesOrNo.equalsIgnoreCase("Yes") || yesOrNo.equalsIgnoreCase("No")))
-          {
+            }
+            else if (randNum == 2 || randNum == 3)
+            {
+                System.out.println("\nYou fight the goblin and lose");
+                if(currentPlayer.getHealth() > 50|| currentPlayer.getName().equals("Bob"))
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth() - 20);
+                    System.out.println("Health: -20");
+                }
+                else
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth() - 10);
+                    System.out.println("Health: -10");
+                }
+
+            }
+            else
+            {
+                System.out.println("\nYou fight the goblin and tie");
+            }
+
+        }
+        if(ans.equalsIgnoreCase("no"))
+        {
+            System.out.println("\nYou walk away from the goblin");
+        }
+    }
+
+
+    //choice 2 method
+    public static void bridge(Player currentPlayer)
+    {
+        System.out.println("\nYou walk on the old creaky bridge...and OH it falls out from under you and you're suddenly attacked by a fish");
+        String ans = validateYes("\nDo you want to fight it? (yes/no)");
+        if (ans.equalsIgnoreCase("yes"))
+        {
+            Random rand = new Random();
+            int randNum = rand.nextInt(5);
+            if (randNum == 0 || randNum == 1)
+            {
+                System.out.println("\nYou fight the fish and win");
+                if(currentPlayer.getHealth() > 50 || currentPlayer.getName().equals("Bob"))
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth()+5);
+                    System.out.println("Health: +5");
+                }
+                else
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth()+ 10);
+                    System.out.println("Health: +10");
+                }
+
+            }
+            else if (randNum == 2 || randNum == 3)
+            {
+                System.out.println("\nYou fight the fish and lose");
+                if(currentPlayer.getHealth() > 50 || currentPlayer.getName().equals("Bob"))
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth() - 20);
+                    System.out.println("Health: -20");
+                }
+                else
+                {
+                    currentPlayer.setHealth(currentPlayer.getHealth() - 10);
+                    System.out.println("Health: -10");
+                }
+
+            }
+            else
+            {
+                System.out.println("\nYou fight the fish and tie");
+            }
+
+        }
+        if(ans.equalsIgnoreCase("no"))
+        {
+            System.out.println("\nYou walk away from the fish");
+        }
+    }
+
+    //final choice method
+    public static void wizard(Player currentPlayer) {
+        System.out.println("\nYou have survived! but on your way out you were stopped by a wizard asking if you want to play a game....[1 or 2]");
+        Scanner scan = new Scanner(System.in);
+        int choice = scan.nextInt();
+        if (choice == 1) {
+            Player.yesPlay(currentPlayer);
+        } else if (choice == 2)//if you dont want to play
+        {
+            System.out.println("Wrong choice, the Wizard is not happy and kills you"+ "\nHealth: -100" + "\nGame Over");
+        }
+
+    }
+
+    //Method if you want to play wizards game
+    public static void yesPlay(Player currentPlayer)
+    {
+        System.out.println("\nWizard: so you have choosen to play a game...I am thinking of a number 1-10, you have one try");
+        final int MAX = 10;
+        int answer, guess;
+        Scanner scan = new Scanner(System.in);
+        Random generator = new Random();
+        answer = generator.nextInt(MAX) + 1;
+        System.out.println("[Ignore this, this is the right answer: " + answer + "]");
+        System.out.println("Enter your guess: ");
+        guess = scan.nextInt();
+
+        if (guess != answer) {
+            System.out.println("you have lost the game");
+            System.out.println("The number was " + answer + ". The wizard has killed you :(" + "\nHealth: -100" + "\nGame Over");
+            System.exit(0);
+        } else {
+            System.out.println("Good job you passed and may continue on your journey");
+        }
+
+    }
+
+
+    //validate yes or no typed in
+    public static String validateYes(String prompt) // Meant to ensure that the user entered Y or N
+    {
+
+        String yesOrNo;
+        Scanner scan = new Scanner(System.in);
+
+        System.out.println(prompt);
+
+        yesOrNo = scan.nextLine();
+
+        while(!(yesOrNo.equalsIgnoreCase("Yes") || yesOrNo.equalsIgnoreCase("No")))
+        {
             System.out.println("\nPlease enter [Yes] or [No]");
             System.out.println("\nTry again. " + prompt);
             yesOrNo = scan.nextLine();
 
-          }
+        }
 
-          return yesOrNo;
+        return yesOrNo;
     }
-
-    public static String validate12(String prompt) // Meant to ensure that the user entered Y or N
-        {
-
-          String yesOrNo;
-          Scanner scan = new Scanner(System.in);
-
-          System.out.println(prompt);
-
-          yesOrNo = scan.nextLine();
-
-          while(!(yesOrNo.equalsIgnoreCase("Yes") || yesOrNo.equalsIgnoreCase("No")))
-          {
-            System.out.println("\nPlease enter [Yes] or [No]");
-            System.out.println("\nTry again. " + prompt);
-            yesOrNo = scan.nextLine();
-
-          }
-
-          return yesOrNo;
-    }
-    
-  }
+}
 
 
 
 
-
-  
 
 
 
