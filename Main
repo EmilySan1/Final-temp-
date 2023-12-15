@@ -49,8 +49,8 @@ public class Main {
     public static void welcome() {
         System.out.println("Welcome player what's your name?");
         Scanner scan = new Scanner(System.in);
-        String playerName = scan.nextLine();
-        System.out.println("\nWelcome, " + playerName.toUpperCase() + "! to THE CATS MEOW, you will go through an adventure to try and survive. Choose your character");
+        String userName = scan.nextLine();
+        System.out.println("\nWelcome, " + userName.toUpperCase() + "! to THE CATS MEOW, you will go through an adventure to try and survive. Choose your character");
     }
 
     //static rate method
